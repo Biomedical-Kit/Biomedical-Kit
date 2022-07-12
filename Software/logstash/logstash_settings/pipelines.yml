@@ -1,0 +1,4 @@
+- pipeline.id: kafka-elastic
+  path.config: "/usr/share/logstash/pipeline/kafka_elastic.conf"
+  pipeline.workers: 3
+  queue.type: persisted

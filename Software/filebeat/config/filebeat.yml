@@ -1,0 +1,19 @@
+filebeat.inputs:
+- type: mqtt
+  enabled: true
+  hosts: 
+    - tcp://mosquitto:1883
+  topics: 
+    - pulsioximetro
+    - frecuenciacardiaca
+    - emg
+    - ecg
+    
+processors:
+  - decode_json_fields:
+      fields: ["message"]
+
+output.kafka:
+  version: 2.1.0
+  hosts: ["kafka:19092"]
+  topic: '%{[mqtt.topic]}'
